@@ -22,11 +22,43 @@
   <header>
       <nav class="navbar navbar-light bg-dark ">
           <span class="navbar-brand mb-0 h1 text-light">Notes | Django</span>
-          <a href="" data-toggle="modal" data-target="#exampleModal">
+             <a href="" data-toggle="modal" data-target="#exampleModal">
               <button class="btn btn-lg">
                   <i class="fas fa-plus text-light"></i>
               </button>
           </a>
+          <div class="dropdown dropleft">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              {% if request.user.is_authenticated %}
+              <a class="dropdown-item" 
+              href="{% url 'account_logout' %}">
+                <button class="btn">
+                  <i class="fas fa-sign-in-alt"></i> Logout
+                </button>
+              </a> 
+              {% else %}
+              <a class="dropdown-item"
+               href="{% url 'account_login' %}">
+                <button class="btn">
+                  <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+              </a>
+              {% endif %}
+             
+              <a class="dropdown-item" href="#">
+                  <button class="btn">
+                    <i class="fas fa-user"></i> {{request.user.username}}
+                  </button>
+              </a>
+              <a class="dropdown-item" href="#">
+                <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="50" alt="">
+              </a>
+              <a class="dropdown-item" href="#">Another action</a>
+            </div>
+          </div>
         </nav>
   </header> 
 <div class="container mt-5">
