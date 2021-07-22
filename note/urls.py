@@ -8,4 +8,7 @@ urlpatterns = [
 	path('delete/<int:note_id>', views.deleteNote, name='delete'),
 	path('update/<pk>', views.UpdateNoteView.as_view(
 		template_name='update.html'), name='update'),
+
+
+	path('accounts/profile/', views.profile, name='profile')
 ]

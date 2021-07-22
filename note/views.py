@@ -32,3 +32,7 @@ class UpdateNoteView(UpdateView):
 	model = Notes 
 	fields = ['title','body','color']
 	success_url = '/'
+
+
+def profile(request):
+	return render(request, 'account/profile.html')

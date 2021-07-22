@@ -150,7 +150,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/accounts/profile/'
 
 
 # Internationalization

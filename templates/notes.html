@@ -50,13 +50,18 @@
              
               <a class="dropdown-item" href="#">
                   <button class="btn">
-                    <i class="fas fa-user"></i> {{request.user.first_name}}
+                    <i class="fas fa-user"></i> {{request.user.username}}
                   </button>
               </a>
-              <a class="dropdown-item" href="#">
-                <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="50" alt="">
-              </a>
-              <a class="dropdown-item" href="#">Another action</a>
+              {% if request.user.socialaccount %}
+                  <a class="dropdown-item" href="#">
+                    <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" width="50" alt="">
+                  </a>
+              {% else %}
+                <a class="dropdown-item" href="#">Another action</a>                 
+              
+              {% endif %}
+              
             </div>
           </div>
         </nav>
