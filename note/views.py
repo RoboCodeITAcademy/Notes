@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Notes
 from django.views.generic.edit import UpdateView
+from django.core.paginator import Paginator
 # Create your views here.
 
 from .forms import AddNotesForm, UpdateNotesForm
@@ -15,9 +16,12 @@ def notes(request):
 		
 		form = AddNotesForm()
 	notes = Notes.objects.all()
+	paginator = Paginator(notes, 1)  # Show 2 notes per page.
+	page_number = request.GET.get('page')
+	page_obj = paginator.get_page(page_number)
 	context = {
-		'notes':notes,
 		'add_form':form,
+		'page_obj': page_obj
 	
 	}
 	return render(request, 'notes.html', context)

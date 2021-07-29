@@ -69,7 +69,7 @@
 <div class="container mt-5">
     <div class="row">
      
-            {% for note in notes %}
+            {% for note in page_obj %}
             <div class="col-md-3">
                 <div class="card {{note.color}}">
                     <div class="card-header">
@@ -127,6 +127,31 @@
               </div>
             </div>
             {% endfor %}
+    <div class="mt-5">
+    <div class="p-5">
+        <a href="?page=1" class="btn btn-secondary">1</a>
+        <a href="?page=2" class="btn btn-secondary">2</a>
+        <a href="?page=3" class="btn btn-secondary">3</a>
+        <a href="?page=4" class="btn btn-secondary">4</a>
+    </div>
+        <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+    </div>
        
     </div>
 </div>
